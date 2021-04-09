@@ -1,28 +1,33 @@
 <div id="navbar">
 <a href="/">Home</a> &diam;
 <a href="/Index2">LoveSounds</a> &diam;
-<span id="navwelcome"></span>
+<a href="/blog/">Blog</a> &diam;
+<span id="navwelcome">Greetings, <a href="/login">stranger</a>.</span>
 </div>
 
 <script>
 
 $(function() {
-    var name = "<%=data.username %>";
-    var greetNewcomer = "<input type='text'/><button type='submit'>Tell me your name</button>";
 
-    const sayYourName = function() {
-         var visitorName = $('#navwelcome > input').val();
-            $.ajax({
-                url: 'welcome',
-                type: 'POST',
-                data: {
-                    'nombre': visitorName
-                },
-                success: (data) => {
-                    if(data=='SUCCESS') $('#navwelcome').html("Welcome, "+visitorName+"!"); 
-                }
-            }); 
-    }
+    var name = "<%=data.username %>";
+
+    if(name!="") $('#navwelcome').html("Welcome, "+name);
+
+    // var greetNewcomer = "<input type='text'/><button type='submit'>Tell me your name</button>";
+
+    //  const sayYourName = function() {
+    //      var visitorName = $('#navwelcome > input').val();
+    //         $.ajax({
+    //             url: 'welcome',
+    //            type: 'POST',
+    //            data: {
+    //                'nombre': visitorName
+    //            },
+    //            success: (data) => {
+    //                if(data=='SUCCESS') $('#navwelcome').html("Welcome, "+visitorName+"!"); 
+    //            }
+    //        }); 
+    // }
 
     if(name=="") {
         $('#navwelcome').html(greetNewcomer);
